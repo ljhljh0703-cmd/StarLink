@@ -12,6 +12,8 @@ Translate ambient English, Japanese, and Chinese speech into Korean — streamed
 [![LiveKit WebRTC](https://img.shields.io/badge/LiveKit-2.0-purple?logo=livekit&logoColor=white)](https://livekit.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+**🌐 English** &nbsp;|&nbsp; [한국어](README.ko.md)
+
 </div>
 
 ---
@@ -24,17 +26,33 @@ By pairing a mobile device (iPhone) with any Bluetooth earphone (such as AirPods
 
 ---
 
+## 🎬 Demo & Portfolio
+
+> 📹 **Demo video** and 🔗 **interactive portfolio page** — _coming soon._
+<!-- DEMO_URL: replace with the demo video link when ready -->
+<!-- PORTFOLIO_URL: replace with the portfolio page link when ready -->
+
+---
+
+## 🎧 Supported Audio Devices
+
+StarLink works with **any wireless audio output** — AirPods, Galaxy Buds, generic Bluetooth earbuds, and MFi (Made for iPhone) hearing aids are all handled identically. **No device-specific configuration is required**; translated audio is routed to whatever wireless device is connected.
+
+> **Note for non-hearing-aid users:** While a wireless device is connected, forcing output to the iPhone's built-in speaker is intentionally disabled (a routing-protection measure for MFi devices). To play translation through the phone speaker, disconnect the wireless device first.
+
+---
+
 ## ⚡ Core Engineering Challenges Solved (Portfolio Highlights)
 
 This project addresses several complex real-time audio engineering and WebRTC challenges in iOS:
 
-### 1. Bluetooth & MFi Audio Routing Control (WebRTC Bypass)
-* **Challenge**: LiveKit’s automatic audio configuration resets the iOS `AVAudioSession` category, causing WebRTC to route audio to the iPhone's internal receiver (earpiece) instead of connected Bluetooth earphones or MFi hearing devices.
-* **Solution**: Bypassed LiveKit's auto-configuration (`isAutomaticConfigurationEnabled = false`) and implemented manual control. Wrapped routing configurations within WebRTC configuration locks (`LKRTCAudioSession.sharedInstance().lockForConfiguration()`), and forced category options supporting Bluetooth (`.allowBluetooth`, `.allowBluetoothA2DP`, `.allowAirPlay`, and `.defaultToSpeaker`) to preserve the Bluetooth output route.
+### 1. Bluetooth & MFi Audio Routing Control
+* **Challenge**: Audio can default to the iPhone's internal receiver (earpiece) instead of connected Bluetooth earphones or MFi hearing devices. Manipulating `AVAudioSession` directly fights LiveKit's WebRTC session management, causing async audio-thread locks and freezes.
+* **Solution**: Delegated the audio-session lifecycle to the LiveKit SDK (`isAutomaticConfigurationEnabled = true`) to avoid async audio-thread deadlocks, and controlled the output path through LiveKit's official API (`AudioManager.shared.isSpeakerOutputPreferred`) rather than raw `AVAudioSession` overrides. When a hearing device is connected, speaker preference is forced off and a short Bluetooth settle delay is inserted to avoid `AUIOClient_StartIO` (-3001) deadlocks.
 
-### 2. Acoustic Feedback Loop Prevention (VAD & Mute Guard)
-* **Challenge**: Translated audio playing through the earphones can leak back into the iPhone's microphone, causing the AI agent to hear its own translated voice and re-translate it, triggering an infinite echo loop.
-* **Solution**: Developed a semi-duplex audio control mechanism. Intercepted the remote participant's Voice Activity Detection (`isAISpeakingByVAD`) event. The moment the AI agent begins streaming audio, the local mic track is immediately muted. Once the AI finishes speaking, the microphone remains muted for a **500ms safety buffer** to clear acoustic reverberations before unmuting.
+### 2. Acoustic Feedback Loop Prevention
+* **Challenge**: Translated audio playing through the earphones can leak back into the iPhone's microphone, causing the AI agent to hear its own translated voice and re-translate it (an echo loop). Physically muting/unmuting the mic track to prevent this risks WebRTC audio-device locks and freezes.
+* **Solution**: Instead of physically toggling the mic track (which destabilizes the WebRTC audio device), feedback and back-channel interception are suppressed on the backend by disabling interruption handling in the `AgentSession` (`"interruption": {"enabled": False}`). This keeps the audio output path alive while preventing the agent from re-translating its own output.
 
 ### 3. Voice-Subtitle Modality Synchronization
 * **Challenge**: The Gemini Live voice-to-voice model generates raw audio packets. In its default state, it does not send the corresponding transcription stream, leaving on-screen subtitles stuck in a loading state.
