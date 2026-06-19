@@ -1,0 +1,60 @@
+# ====================================================================
+# StarLink Project Git Ignore Rules
+# ====================================================================
+
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Xcode Build Files & Cache
+build/
+DerivedData/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
+*.xcuserstate
+
+# XcodeGen Generated Project Files
+# (Generate with: xcodegen generate)
+StarLink.xcodeproj/
+StarLink.xcworkspace/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+*.resolved
+
+# Local Credentials and Configuration (CRITICAL)
+StarLink/Secrets.plist
+backend/.env
+
+# Python Virtual Environments & Packages
+backend/venv/
+backend/.venv/
+ENV/
+env/
+python/
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Agent Scratchpad / Logs
+scratch/
+*.log
+.gemini/
+
+# Local AI agent state (not for open-source)
+.claude/
+docs/.bkit-memory.json
+docs/.pdca-status.json
+agent_run.log

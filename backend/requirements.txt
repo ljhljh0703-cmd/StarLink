@@ -1,0 +1,7 @@
+# StarLink Backend Dependencies
+# ================================
+# LiveKit Agents SDK with Google (Gemini) plugin
+livekit-agents[google]~=1.5
+
+# Environment variable management
+python-dotenv>=1.0
