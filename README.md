@@ -28,9 +28,8 @@ By pairing a mobile device (iPhone) with any Bluetooth earphone (such as AirPods
 
 ## 🎬 Demo & Portfolio
 
-> 📹 **Demo video** and 🔗 **interactive portfolio page** — _coming soon._
-<!-- DEMO_URL: replace with the demo video link when ready -->
-<!-- PORTFOLIO_URL: replace with the portfolio page link when ready -->
+- 📹 **Demo video** — [Watch on YouTube](https://youtu.be/QoNDGrmcoH4)
+- 🔗 **Interactive portfolio** — [ljhljh0703-cmd.github.io/StarLink](https://ljhljh0703-cmd.github.io/StarLink/portfolio.html)
 
 ---
 

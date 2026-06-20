@@ -28,9 +28,8 @@
 
 ## 🎬 데모 & 포트폴리오
 
-> 📹 **데모 영상** 과 🔗 **인터랙티브 포트폴리오 페이지** — _준비 중._
-<!-- DEMO_URL: replace with the demo video link when ready -->
-<!-- PORTFOLIO_URL: replace with the portfolio page link when ready -->
+- 📹 **데모 영상** — [YouTube에서 보기](https://youtu.be/QoNDGrmcoH4)
+- 🔗 **인터랙티브 포트폴리오** — [ljhljh0703-cmd.github.io/StarLink](https://ljhljh0703-cmd.github.io/StarLink/portfolio.html)
 
 ---
 
