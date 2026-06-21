@@ -175,15 +175,6 @@ To avoid server hosting and API usage costs for a public release, the app includ
 * Tap **Save Settings** to persist the configuration in `UserDefaults`.
 * *Note: When configured, user-defined inputs override default compile-time keys. Tap **Reset to Defaults** to clear these overrides.*
 
-#### 📱 Sideloading with a Free Apple Developer Account (For Portfolio Video Demo)
-You do not need a paid developer membership ($99/year) to capture your working demo video:
-1. Connect your physical iPhone to your Mac via USB.
-2. Open `StarLink.xcodeproj` in Xcode, select the **StarLink** target -> **Signing & Capabilities**.
-3. Under **Team**, select your personal Apple ID (Xcode will generate a free provisioning profile).
-4. Build and run the app on your device.
-5. On your iPhone, go to **Settings** -> **General** -> **VPN & Device Management** and tap **Trust** on your developer certificate.
-*Note: Apps signed with a free developer certificate expire and must be re-signed every **7 days**, which is ideal for testing and recording demo videos.*
-
 #### Backend Setup
 1. Navigate to the backend directory:
    ```bash
