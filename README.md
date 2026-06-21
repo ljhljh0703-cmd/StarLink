@@ -106,7 +106,7 @@ This project addresses several complex real-time audio engineering and WebRTC ch
 2. **Uplink Streaming**: The LiveKit SDK publishes the local audio track to the room.
 3. **AI Translation**: The Python agent receives the audio track, forwards it to Gemini 3.5 Live, and translates it into Korean.
 4. **Subtitles Delivery**: The agent parses the source language and publishes transcription data to the LiveKit data channel under the topic `caption`.
-5. **Downlink Playback**: The iOS client receives the translated audio track. The customized `AVAudioSession` manager routes this stream directly to the connected AirPods/earphones.
+5. **Downlink Playback**: The iOS client receives the translated audio track, and the LiveKit-managed audio session delivers it to the connected wireless device (AirPods, earphones, or hearing aid).
 6. **UI Render**: SwiftUI decodes the JSON payload, rendering captions alongside their detected language badge (e.g. `[영어]`, `[일본어]`).
 
 ---
@@ -168,7 +168,7 @@ StarLink/
    ```
 4. Open `StarLink.xcodeproj`, set your **Development Team** under Target -> Signing & Capabilities, and build/run on your physical iPhone.
 
-#### 🔑 Bring Your Own Key (BYOK) Mode (For App Store Release)
+#### 🔑 Bring Your Own Key (BYOK) Mode (For Public Distribution)
 To avoid server hosting and API usage costs for a public release, the app includes a **Settings UI** (accessible via the Gear icon in the top status bar) enabling runtime configuration:
 * Tap the **Gear** icon in the status bar.
 * Input your own `LIVEKIT_URL`, static `LIVEKIT_TOKEN`, or dynamic `TOKEN_SERVER_URL`.

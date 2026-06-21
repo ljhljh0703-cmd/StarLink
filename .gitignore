@@ -58,3 +58,10 @@ scratch/
 docs/.bkit-memory.json
 docs/.pdca-status.json
 agent_run.log
+
+# Internal dev / AI-agent docs (not for public repo)
+CLAUDE.md
+AGENTS.md
+plan.md
+progress.md
+requirements.md
