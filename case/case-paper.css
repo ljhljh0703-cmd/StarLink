@@ -175,3 +175,4 @@ footer.cp-foot span{margin-left:auto;color:var(--muted)}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media print{nav.cp-nav,.cp-actions{display:none}}
+.cp-who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:16px 0 0;border:1.5px solid var(--ink);background:var(--slip)} .cp-who div{padding:10px 14px} .cp-who div+div{border-left:1px solid var(--line)} .cp-who dt{font-size:12px;font-weight:800;color:var(--accent);margin-bottom:2px} .cp-who dd{margin:0;font-size:13.5px;line-height:1.55} .cp-who.two{grid-template-columns:repeat(2,minmax(0,1fr))} @media(max-width:600px){.cp-who,.cp-who.two{grid-template-columns:1fr}.cp-who div+div{border-left:0;border-top:1px solid var(--line)}}
