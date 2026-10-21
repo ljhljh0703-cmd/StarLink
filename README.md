@@ -18,6 +18,58 @@ Translate ambient English, Japanese, and Chinese speech into Korean — streamed
 
 ---
 
+> 주변의 영어·일본어·중국어 말을 한국어로 통역해 무선 이어폰·보청기로 들려주고 화면에 자막을 띄우는 iOS 앱과 통역 에이전트.
+> iOS app and Python agent that turn nearby English, Japanese and Chinese speech into Korean audio and captions.
+>
+> 작품 페이지: https://ljhljh0703-cmd.github.io/StarLink/portfolio.html
+
+**실행**
+
+```bash
+# 통역 에이전트 (Python)
+cd backend
+python3 -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+python agent.py dev        # 통역 에이전트
+python server.py           # 접속 토큰 서버(선택)
+
+# iOS 앱 (macOS · Xcode · XcodeGen)
+cp StarLink/Secrets.plist.example StarLink/Secrets.plist
+xcodegen generate          # StarLink.xcodeproj 생성 → Xcode에서 실기기로 실행
+./run_simulator.sh         # 시뮬레이터 빌드·실행 (블루투스 경로는 실기기에서만 확인됨)
+```
+
+필요한 값: `backend/.env`에 `LIVEKIT_URL` · `LIVEKIT_API_KEY` · `LIVEKIT_API_SECRET` · `GOOGLE_API_KEY`, `Secrets.plist`에 `LIVEKIT_URL` · `LIVEKIT_TOKEN` · `TOKEN_SERVER_URL`.
+
+**시험**
+
+```bash
+cd backend
+python -m unittest test_agent -v    # 언어 감지 · 문장 자르기 · 자막 상태 추적
+```
+
+2026-10-21 컨테이너에서 돌린 결과: 17개 통과. iOS 쪽 `StarLinkTests`(XCTest)는 Xcode에서 돌린다.
+
+**구조**
+
+```
+StarLink/Managers/     오디오 경로(블루투스·보청기) · LiveKit 연결
+StarLink/Views/        SwiftUI 자막·설정 화면
+backend/agent.py       Gemini Live 통역 에이전트, 언어 감지 · 자막 동기화
+backend/server.py      접속 토큰 발급 서버
+backend/test_agent.py · StarLinkTests/   에이전트 · 앱 시험
+project.yml            XcodeGen 프로젝트 정의
+```
+
+**누가 무엇을**
+
+- 내가 정한 것: 기획·설계·판정 (이주형)
+- AI가 짠 것: 코드 작성, AI 코딩 도구(Claude)와 함께. 커밋 9개 중 7개(첫 공개 커밋 포함)에 `Co-Authored-By: Claude` 표기
+- 내가 확인한 것: 검증 (이주형)
+
+---
+
 ## 📖 Overview
 
 **StarLink** is an iOS application and backend agent system designed for **hands-free, real-time simultaneous translation** through wireless audio devices. 
