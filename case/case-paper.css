@@ -32,6 +32,8 @@ nav.cp-nav{position:sticky;top:0;z-index:30;background:rgba(238,230,214,.95);bac
 .cp-kicker b{color:var(--accent);margin-right:10px}
 .cp-h1{margin:0;font:400 clamp(34px,4.6vw,60px)/1.14 "Black Han Sans","Wanted Sans Variable",sans-serif;letter-spacing:-.01em;text-shadow:3px 2px 0 color-mix(in srgb,var(--accent) 55%,transparent)}
 .cp-h1 b{font-weight:400;color:var(--accent);text-shadow:3px 2px 0 rgba(27,26,23,.25);white-space:nowrap}
+body[data-ink="ink"] .cp-h1 b{text-shadow:3px 2px 0 rgba(192,65,42,.6)}
+body[data-ink="ink"] .cp-h1{text-shadow:3px 2px 0 rgba(27,26,23,.22)}
 .cp-lead{max-width:640px;margin:22px 0 0;font-size:17px;color:var(--muted)}
 .cp-result{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin:22px 0 0;padding:12px 16px;background:var(--slip);border:1.5px solid var(--ink)}
 .cp-result strong{font-size:19px;color:var(--accent)}
