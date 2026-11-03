@@ -65,7 +65,7 @@ project.yml            XcodeGen 프로젝트 정의
 **누가 무엇을**
 
 - 내가 정한 것: 기획·설계·판정 (이주형)
-- AI가 짠 것: 코드 작성, AI 코딩 도구(Claude)와 함께. 커밋 9개 중 7개(첫 공개 커밋 포함)에 `Co-Authored-By: Claude` 표기
+- AI로 짠 것: 코드 작성, AI 코딩 도구(Claude)와 함께. 커밋 9개 중 7개(첫 공개 커밋 포함)에 `Co-Authored-By: Claude` 표기
 - 내가 확인한 것: 검증 (이주형)
 
 ---
